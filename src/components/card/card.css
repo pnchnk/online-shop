@@ -1,0 +1,105 @@
+.card {
+    max-height: 380px;
+    min-width: 200px;
+    border: none;
+    background-color: white !important;
+}
+
+.card:hover {
+    -webkit-box-shadow: -1px 11px 16px 0px rgba(0,0,0,0.56); 
+    box-shadow: -1px 11px 16px 0px rgba(0,0,0,0.56);
+    cursor: pointer;
+}
+
+.card-img-top {
+    max-height: 145px;
+    transition: all ease 0.4s;
+    border-radius: 10px;
+}    
+
+.cart-image {
+    width: 10rem;
+    margin: 1em;
+  }
+  
+.cart-price {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.card__title {
+    font-weight: 700 !important;
+}
+
+.card__stock {
+    color: green;
+}
+
+.card__image {
+    max-height: 100% !important;
+}
+    
+.card__old-price {
+    font-size: 14px;
+    color: lightgray;
+}
+    
+.card__current-price {
+    font-weight: 700;
+    margin-left: 10px;
+}
+    
+.card__btn {
+    border-top: 1px solid rgba(128, 128, 128, 0.3);
+    padding-top: 5px;
+}
+
+.img-link {
+    overflow: hidden;
+}
+
+
+@media (max-width:571px){
+    .card {
+        min-width: 100% !important;
+        max-height: 380px;
+    }
+    .card-img-top {
+        min-height: 135px;
+        background-size: contain !important;
+        background-position: center center;
+    }    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

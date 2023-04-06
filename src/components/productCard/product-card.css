@@ -1,0 +1,31 @@
+.product-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 1px 10px 1px rgba(0,0,0,0.6); 
+    box-shadow: 0px 1px 10px 1px rgba(0,0,0,0.6);
+}
+
+.product__old-price {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: darkgray;
+}
+
+.product__current-price {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.product__discount {
+    display: inline-block;
+    padding: 5px;
+    background-color: rgba(255, 0, 0, 0.85);
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+}
