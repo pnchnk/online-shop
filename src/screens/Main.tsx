@@ -16,8 +16,10 @@ import { Product } from "../types";
 function Main() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  //@ts-ignore
-  const products: [Product['products']] = useAppSelector((state) => state.products.products.products);
+  const products: [Product["products"]] = useAppSelector(
+    //@ts-ignore
+    (state) => state.products.products.products
+  );
 
   const { data } = useGetAllProductsQuery();
 
@@ -31,9 +33,7 @@ function Main() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (data) {
-        return setIsLoading(false);
-      }
+      return setIsLoading(false);
     }, 400);
     return () => clearTimeout(timer);
   }, []);
