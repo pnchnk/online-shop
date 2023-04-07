@@ -18,6 +18,7 @@ This is an online store simulation
 - [React Router](https://reactrouter.com/en/main/start/overview) - Routing
 - [Firebase](https://firebase.google.com/docs) - User auth
 - [Vercel](https://online-shop-nine-iota.vercel.app/) - Production
+- [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) - CSS Styles
 
 ## Installation
 
