@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-//components
+//nav
 import { useNavigate } from "react-router-dom";
+
+//components
 import Header from "../components/header/Header";
 import Card from "../components/shoppingCartCard/Card";
 import Footer from "../components/footer/Footer";
@@ -12,20 +14,29 @@ import Spinner from "../components/spinner/Index";
 import { cleanCart } from "../store/slice/basketSlice";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 
+//auth
+import { useAuth } from "../store/hooks";
+
+
 function Cart() {
+  //basket state
   const basket = useAppSelector((state) => state.basket.basketItems);
+
+  //firebase auth
+  const { isAuth } = useAuth();
 
   const [modalWindow, setModalWindow] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  //nav
   const navigate = useNavigate();
-
   const handleNavigate = () => {
     navigate(`/`);
   };
 
   const dispatch = useAppDispatch();
 
+  //close modal and remove basket items
   const handleClose = () => {
     setModalWindow(false);
     dispatch(cleanCart());
@@ -93,13 +104,23 @@ function Cart() {
                   )}
                   $
                 </span>
-                <button
-                  className="btn btn-outline-dark text-center"
-                  type="button"
-                  onClick={() => setModalWindow(true)}
-                >
-                  Place order.
-                </button>
+                {isAuth ? (
+                  <button
+                    className="btn btn-outline-dark text-center"
+                    type="button"
+                    onClick={() => setModalWindow(true)}
+                  >
+                    Place order.
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-outline-dark text-center"
+                    type="button"
+                    onClick={() => navigate('/login')}
+                  >
+                    Please sign in to complete the order.
+                  </button>
+                )}
               </>
             )}
           </div>

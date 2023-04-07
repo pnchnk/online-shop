@@ -16,12 +16,12 @@ import Spinner from "../components/spinner/Index";
 import { useGetProductQuery } from "../store/api/products";
 import { useAppSelector } from "../store/hooks";
 
+//types
 import { Product } from "../types";
 
 function ProductPage() {
   const params = useParams();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
 
   const products: [Product["products"]] = useAppSelector(
     //@ts-ignore
@@ -30,6 +30,7 @@ function ProductPage() {
 
   const { data } = useGetProductQuery(params?.id);
 
+  //loader
   useEffect(() => {
     const timer = setTimeout(() => {
       return setIsLoading(false);
@@ -39,6 +40,7 @@ function ProductPage() {
 
   const [relevant, setRelevant] = useState<any>();
 
+  //bottom 3 related products (our product not included)
   const relatedProducts = (product: any) => {
     let temp = products?.filter(
       (el) => el.category === product?.category && el?.id !== product?.id

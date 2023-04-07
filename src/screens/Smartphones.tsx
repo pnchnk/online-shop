@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState, useMemo } from "react";
 
+//nav
 import { useLocation } from "react-router-dom";
 
 //components
@@ -13,10 +14,14 @@ import Spinner from "../components/spinner/Index";
 import { useGetAllProductsQuery } from "../store/api/products";
 import { useAppSelector } from "../store/hooks";
 
+//types
 import { Product } from "../types";
 
 function Smartphones() {
-  const [sort, setSort] = useState("relevance");
+  //sort state
+  const [sort, setSort] = useState<string>("relevance");
+
+  //loader
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   let { state } = useLocation();
@@ -34,6 +39,7 @@ function Smartphones() {
     setSort(e.target.value);
   };
 
+  //loader
   useEffect(() => {
     const timer = setTimeout(() => {
       if (data) {
@@ -43,6 +49,7 @@ function Smartphones() {
     return () => clearTimeout(timer);
   }, []);
 
+  //sorting by relevance & price
   const sorted = useMemo(() => {
     if (sort === "relevance") {
       return mainProducts.sort((a, b) => b.rating - a.rating);
@@ -65,7 +72,7 @@ function Smartphones() {
     <Spinner />
   ) : (
     <>
-      <Header title={"Smartphones"} />
+      <Header title={state.name} />
       <div className="container px-4 px-lg-5 mt-5">
         <div className="products__sort">
           Sort by :{" "}

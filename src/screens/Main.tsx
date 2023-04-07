@@ -14,16 +14,14 @@ import { useGetAllProductsQuery } from "../store/api/products";
 import { Product } from "../types";
 
 function Main() {
+  useGetAllProductsQuery();
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const products: [Product["products"]] = useAppSelector(
+  const mainProducts: [Product["products"]] = useAppSelector(
     //@ts-ignore
-    (state) => state.products.products.products
+    (state) => state.products?.products?.products
   );
-
-  const { data } = useGetAllProductsQuery();
-
-  const mainProducts = products;
 
   const [sort, setSort] = useState("relevance");
 
@@ -31,6 +29,7 @@ function Main() {
     setSort(e.target.value);
   };
 
+  //loader
   useEffect(() => {
     const timer = setTimeout(() => {
       return setIsLoading(false);
@@ -38,23 +37,24 @@ function Main() {
     return () => clearTimeout(timer);
   }, []);
 
+  //relevant & price sorting
   const sorted = useMemo(() => {
     if (sort === "relevance") {
       return mainProducts?.sort((a, b) => b.rating - a.rating);
     } else if (sort === "low-high") {
-      return mainProducts.sort(
+      return mainProducts!.sort(
         (a, b) =>
           Math.round(a.price - (a.price * a.discountPercentage) / 100) -
           Math.round(b.price - (b.price * b.discountPercentage) / 100)
       );
     } else if (sort === "high-low") {
-      return mainProducts.sort(
+      return mainProducts!.sort(
         (a, b) =>
           Math.round(b.price - (b.price * b.discountPercentage) / 100) -
           Math.round(a.price - (a.price * a.discountPercentage) / 100)
       );
     }
-  }, [sort]);
+  }, [mainProducts, sort]);
 
   return isLoading ? (
     <Spinner />

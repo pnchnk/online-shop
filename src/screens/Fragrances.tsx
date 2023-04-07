@@ -13,16 +13,22 @@ import Spinner from "../components/spinner/Index";
 import { useGetAllProductsQuery } from "../store/api/products";
 import { useAppSelector } from "../store/hooks";
 
+//types
 import { Product } from "../types";
 
 function Fragrances() {
+  //sort state
   const [sort, setSort] = useState<string>("relevance");
+
+  //loader
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   let { state } = useLocation();
 
- //@ts-ignore
- const products: [Product['products']] = useAppSelector((state) => state.products.products.products);
+  const products: [Product["products"]] = useAppSelector(
+    //@ts-ignore
+    (state) => state.products.products.products
+  );
 
   const { data } = useGetAllProductsQuery();
 
@@ -34,6 +40,7 @@ function Fragrances() {
     setSort(e.target.value);
   };
 
+  //relevant & price sorting
   const sorted = useMemo(() => {
     if (sort === "relevance") {
       return mainProducts.sort((a, b) => b.rating - a.rating);
@@ -52,6 +59,7 @@ function Fragrances() {
     }
   }, [sort]);
 
+  //loader
   useEffect(() => {
     const timer = setTimeout(() => {
       if (data) {
@@ -65,7 +73,7 @@ function Fragrances() {
     <Spinner />
   ) : (
     <>
-      <Header title={"Laptops"} />
+      <Header title={state.name} />
       <div className="container px-4 px-lg-5 mt-5">
         <div className="products__sort">
           Sort by :{" "}

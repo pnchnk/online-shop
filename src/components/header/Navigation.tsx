@@ -3,9 +3,11 @@ import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useAppSelector } from "../../store/hooks";
+import { faCartShopping, faRightToBracket, faAddressCard, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { BasketItem, Product } from "../../types";
+import { useAuth } from "../../store/hooks";
+import { removeUser } from "../../store/slice/userSlice";
 
 
 function Navigation() {
@@ -23,6 +25,10 @@ function Navigation() {
   const handleNavigate = () => {
     navigate(`/cart`);
   };
+
+  const {isAuth, email} = useAuth();
+
+  const dispatch = useAppDispatch()
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -114,7 +120,7 @@ function Navigation() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to={"/home_decorations"} state={{name: 'home-decorations'}}>
+                  <Link className="dropdown-item" to={"/home_decorations"} state={{name: 'home-decoration'}}>
                     Home-decorations
                   </Link>
                 </li>
@@ -145,6 +151,37 @@ function Navigation() {
                   {totalQuantity}
                 </span>
               </button>
+              {
+                isAuth ? (
+                  <button
+                id="crt-btn"
+                className="btn btn-outline-dark ms-1"
+                type="button"
+                onClick={() => dispatch(removeUser())}
+              >
+                Log out {email} <FontAwesomeIcon icon={faRightFromBracket} />
+              </button>
+                ) : (
+                  <>
+                  <button
+                id="crt-btn"
+                className="btn btn-outline-dark ms-1 me-1"
+                type="button"
+                onClick={() => navigate('/login')}
+              >
+                Sign In <FontAwesomeIcon icon={faRightToBracket} />
+              </button>
+              <button
+                id="crt-btn"
+                className="btn btn-outline-dark"
+                type="button"
+                onClick={() => navigate('/registration')}
+              >
+                Sign Up <FontAwesomeIcon icon={faAddressCard} />
+              </button>
+                  </>
+                )
+              }
             </form>
           </div>
         </div>

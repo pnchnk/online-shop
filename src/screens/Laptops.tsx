@@ -13,10 +13,14 @@ import Spinner from "../components/spinner/Index";
 import { useGetAllProductsQuery } from "../store/api/products";
 import { useAppSelector } from "../store/hooks";
 
+//types
 import { Product } from "../types";
 
 function Laptops() {
+  //sort state
   const [sort, setSort] = useState<string>("relevance");
+
+  //loader
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   let { state } = useLocation();
@@ -34,6 +38,7 @@ function Laptops() {
     setSort(e.target.value);
   };
 
+  //relevant & price sorting
   const sorted = useMemo(() => {
     if (sort === "relevance") {
       return mainProducts.sort((a, b) => b.rating - a.rating);
@@ -52,6 +57,7 @@ function Laptops() {
     }
   }, [sort]);
 
+  //loader
   useEffect(() => {
     const timer = setTimeout(() => {
       if (data) {
@@ -65,7 +71,7 @@ function Laptops() {
     <Spinner />
   ) : (
     <>
-      <Header title={"Laptops"} />
+      <Header title={state.name} />
       <div className="container px-4 px-lg-5 mt-5">
         <div className="products__sort">
           Sort by :{" "}

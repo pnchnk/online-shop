@@ -12,9 +12,10 @@ import Groceries from './screens/Groceries';
 import Fragrances from './screens/Fragrances';
 import Skincare from './screens/Skincare';
 import HomeDecorations from './screens/HomeDecorations';
+import Login from './screens/Login';
+import Registration from './screens/Registration';
 
 function App() {
-  let navigate = useNavigate()
   return (
     <>
       <Routes>
@@ -48,6 +49,12 @@ function App() {
         </Route>
         <Route path='/cart/'>
           <Route index element={<Cart/>} />
+        </Route>
+        <Route path='/login/'>
+          <Route index element={<Login/>} />
+        </Route>
+        <Route path='/registration/'>
+          <Route index element={<Registration/>} />
         </Route>
       </Routes>
     </>

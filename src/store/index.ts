@@ -13,10 +13,12 @@ import {
 import productsReducer from './slice/products'
 import localStorage from 'redux-persist/lib/storage' 
 import basketReducer from './slice/basketSlice'
+import userSlice from './slice/userSlice'
 
 const rootReducer = combineReducers({
   basket: basketReducer,
   products: productsReducer,
+  user: userSlice,
   [productsApi.reducerPath]: productsApi.reducer
 ,
 });
