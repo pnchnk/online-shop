@@ -54,7 +54,8 @@ function Main() {
           Math.round(a.price - (a.price * a.discountPercentage) / 100)
       );
     }
-  }, [mainProducts, sort]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sort]);
 
   return isLoading ? (
     <Spinner />

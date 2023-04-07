@@ -25,7 +25,7 @@ function ProductPage() {
 
   const products: [Product["products"]] = useAppSelector(
     //@ts-ignore
-    (state) => state.products.products.products
+    (state) => state.products?.products.products
   );
 
   const { data } = useGetProductQuery(params?.id);
@@ -53,6 +53,7 @@ function ProductPage() {
 
   useEffect(() => {
     relatedProducts(data);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (

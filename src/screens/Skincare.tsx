@@ -25,8 +25,10 @@ function Skincare() {
 
   let { state } = useLocation();
 
- //@ts-ignore
- const products: [Product['products']] = useAppSelector((state) => state.products?.products?.products);
+  const products: [Product["products"]] = useAppSelector(
+    //@ts-ignore
+    (state) => state.products?.products?.products
+  );
 
   const { data } = useGetAllProductsQuery();
 
@@ -54,6 +56,7 @@ function Skincare() {
           Math.round(a.price - (a.price * a.discountPercentage) / 100)
       );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort]);
 
   useEffect(() => {
@@ -63,6 +66,7 @@ function Skincare() {
       }
     }, 400);
     return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isLoading ? (

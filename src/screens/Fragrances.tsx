@@ -27,7 +27,7 @@ function Fragrances() {
 
   const products: [Product["products"]] = useAppSelector(
     //@ts-ignore
-    (state) => state.products.products.products
+    (state) => state.products?.products.products
   );
 
   const { data } = useGetAllProductsQuery();
@@ -57,6 +57,7 @@ function Fragrances() {
           Math.round(a.price - (a.price * a.discountPercentage) / 100)
       );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort]);
 
   //loader
@@ -67,6 +68,7 @@ function Fragrances() {
       }
     }, 400);
     return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isLoading ? (
