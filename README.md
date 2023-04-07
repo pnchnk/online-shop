@@ -17,7 +17,7 @@ This is an online store simulation
 - [Fontawesome](https://fontawesome.com/icons) - Icons 
 - [React Router](https://reactrouter.com/en/main/start/overview) - Routing
 - [Firebase](https://firebase.google.com/docs) - User auth
-- [Vercel] (https://online-shop-nine-iota.vercel.app/) - Production
+- [Vercel](https://online-shop-nine-iota.vercel.app/) - Production
 
 ## Installation
 
